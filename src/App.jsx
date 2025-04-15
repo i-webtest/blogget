@@ -1,9 +1,7 @@
-import logo from './logo.svg';
-
 function App() {
   return (
     <header className='App-header'>
-      <p>Hello React</p>
+      <h1>Blogget</h1>
     </header>
   );
 }
