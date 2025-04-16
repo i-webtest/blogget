@@ -6,15 +6,13 @@ import { Heading } from './Heading/Heading';
 import { Search } from './Search/Search';
 import { Auth } from './Auth/Auth';
 
-export const Header = () => {
-  return (
-    <header className={style.header}>
-      <Layout className={style.gridContainer}>
-        <Logo />
-        <Heading text='Главная' />
-        <Search />
-        <Auth auth={false} />
-      </Layout>
-    </header>
-  );
-};
+export const Header = () => (
+  <header className={style.header}>
+    <Layout className={style.gridContainer}>
+      <Logo />
+      <Heading text='Главная' />
+      <Search />
+      <Auth auth={false} />
+    </Layout>
+  </header>
+);

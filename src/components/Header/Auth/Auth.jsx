@@ -1,6 +1,9 @@
+/* eslint-disable max-len */
 import React from 'react';
 import style from './Auth.module.css';
+import PropTypes from 'prop-types';
 
+// eslint-disable-next-line arrow-body-style
 export const Auth = ({ auth }) => {
   return (
     <button className={style.button}>
@@ -25,4 +28,8 @@ export const Auth = ({ auth }) => {
       )}
     </button>
   );
+};
+
+Auth.propTypes = {
+  auth: PropTypes.node,
 };
