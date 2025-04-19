@@ -7,6 +7,7 @@ import { LinkPost } from './LinkPost/LinkPost';
 import { PostButton } from './PostButton/PostButton';
 import { Time } from './Time/Time';
 import { PostWrapper } from './PostWrapper/PostWrapper';
+import { DeleteBtn } from './DeleteBtn/DeleteBtn';
 
 export const Post = ({ postData }) => {
   const { title, author, ups, date } = postData;
@@ -21,6 +22,8 @@ export const Post = ({ postData }) => {
         </h2>
 
         <LinkPost className={style.linkAuthor} href='#author' text={author} />
+
+        <DeleteBtn className={style.delete} />
       </PostWrapper>
 
       <PostWrapper className={style.rating}>
