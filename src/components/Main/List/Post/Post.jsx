@@ -9,8 +9,8 @@ import { Time } from './Time/Time';
 import { PostWrapper } from './PostWrapper/PostWrapper';
 import { DeleteBtn } from './DeleteBtn/DeleteBtn';
 
-export const Post = ({ postData }) => {
-  const { title, author, ups, date } = postData;
+export const Post = ({ postsData }) => {
+  const { title, author, ups, date } = postsData;
 
   return (
     <li className={style.post}>
@@ -38,5 +38,5 @@ export const Post = ({ postData }) => {
 };
 
 Post.propTypes = {
-  postData: PropTypes.object,
+  postsData: PropTypes.object,
 };
