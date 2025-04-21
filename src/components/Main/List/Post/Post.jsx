@@ -1,12 +1,11 @@
 import React from 'react';
 import style from './Post.module.css';
-import notphoto from './img/notphoto.jpg';
 import PropTypes from 'prop-types';
 import { formatDate } from '../../../../utils/formatDate';
-import { LinkPost } from './LinkPost/LinkPost';
-import { PostButton } from './PostButton/PostButton';
-import { Time } from './Time/Time';
-import { PostWrapper } from './PostWrapper/PostWrapper';
+import { Content } from './Content/Content';
+import { Rating } from './Rating/Rating';
+import Date from './Date';
+import { Thumbnail } from './Thumbnail/Thumbnail';
 import { DeleteBtn } from './DeleteBtn/DeleteBtn';
 
 export const Post = ({ postsData }) => {
@@ -14,25 +13,15 @@ export const Post = ({ postsData }) => {
 
   return (
     <li className={style.post}>
-      <img className={style.img} src={notphoto} alt={title} />
+      <Thumbnail title={title} />
 
-      <PostWrapper className={style.content}>
-        <h2 className={style.title}>
-          <LinkPost className={style.linkPost} href='#post' text={title} />
-        </h2>
+      <Content title={title} author={author} />
 
-        <LinkPost className={style.linkAuthor} href='#author' text={author} />
+      <Rating ups={ups} />
 
-        <DeleteBtn className={style.delete} />
-      </PostWrapper>
+      <Date dateTime={date} formatDate={formatDate(date)} />
 
-      <PostWrapper className={style.rating}>
-        <PostButton className={style.up} ariaLabel='Повысить рейтинг' />
-        <p className={style.ups}>{ups}</p>
-        <PostButton className={style.down} ariaLabel='Понизить рейтинг' />
-      </PostWrapper>
-
-      <Time className={style.date} dateTime={date} formatDate={formatDate(date)} />
+      <DeleteBtn className={style.delete} />
     </li>
   );
 };
