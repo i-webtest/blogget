@@ -18,9 +18,9 @@
 .logout {
   position: absolute;
   top: 100%;
-  right: -3px;
+  right: 0;
   background-color: var(--orange);
-  border: none;
+  border: 0;
   color: var(--white);
   padding: 4px;
   border-radius: 6px;
