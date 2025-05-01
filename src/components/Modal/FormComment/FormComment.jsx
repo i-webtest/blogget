@@ -6,11 +6,13 @@ import { Text } from '../../UI/Text/Text';
 export const FormComment = () => {
   const { auth } = useContext(authContext);
   const textareaRef = useRef(null);
+  console.log('textareaRef: ', textareaRef);
 
   const commentSubmit = (e) => {
     e.preventDefault();
 
     console.log(textareaRef.current.value);
+    textareaRef.current.value = '';
   };
 
   return (
