@@ -11,7 +11,6 @@ export const Post = ({ postData }) => {
   console.log('postData: ', postData);
 
   const { id, thumbnail, title, author, ups, selftext: markdown, created } = postData;
-  // console.log('thumbnail: ', id);
 
   return (
     <li className={style.post}>
