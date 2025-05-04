@@ -1,9 +1,9 @@
-import { useContext, useEffect, useState } from 'react';
-import { tokenContext } from '../context/tokenContext';
+import { useEffect, useState } from 'react';
 import { URL_API } from '../api/const';
+import { useSelector } from 'react-redux';
 
 export const useCommentsData = (id) => {
-  const { token } = useContext(tokenContext);
+  const token = useSelector((state) => state.token);
   const [commentsData, setCommentsData] = useState([]);
 
   useEffect(() => {
@@ -32,9 +32,7 @@ export const useCommentsData = (id) => {
             data: { children },
           },
         ]) => {
-          const comments = children.map((item) => {
-            item.data;
-          });
+          const comments = children.map((item) => item.data);
           setCommentsData([post, comments]);
         },
       )

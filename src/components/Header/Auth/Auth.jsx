@@ -4,12 +4,13 @@ import style from './Auth.module.css';
 import { ReactComponent as LoginIcon } from './img/login.svg';
 import { Text } from '../../UI/Text/Text';
 import { urlAuth } from '../../../api/auth';
-import { tokenContext } from '../../../context/tokenContext';
 import { authContext } from '../../../context/authContext';
+import { useDispatch } from 'react-redux';
+import { deleteToken } from '../../../store';
 
 // eslint-disable-next-line arrow-body-style
 export const Auth = () => {
-  const { delToken } = useContext(tokenContext);
+  const dispatch = useDispatch();
   const [showLogout, setShowLogout] = useState(false);
   const { auth, clearAuth } = useContext(authContext);
 
@@ -18,7 +19,7 @@ export const Auth = () => {
   };
 
   const logOut = () => {
-    delToken();
+    dispatch(deleteToken());
     clearAuth();
   };
 
@@ -30,7 +31,7 @@ export const Auth = () => {
             <img className={style.img} src={auth.img} title={auth.name} alt={`Аватарка ${auth.name}`} />
           </button>
 
-          {logOut && (
+          {showLogout && (
             <button className={style.logout} onClick={logOut}>
               Выйти
             </button>

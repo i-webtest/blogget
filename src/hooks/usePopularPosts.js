@@ -1,10 +1,10 @@
-import { useContext, useEffect, useState } from 'react';
-import { tokenContext } from '../context/tokenContext';
+import { useEffect, useState } from 'react';
 import { URL_API } from '../api/const';
+import { useSelector } from 'react-redux';
 
 export const usePopularPosts = () => {
   const [posts, setPosts] = useState([]);
-  const { token } = useContext(tokenContext);
+  const token = useSelector((state) => state.token);
 
   useEffect(() => {
     if (!token) return;
@@ -14,7 +14,12 @@ export const usePopularPosts = () => {
         Authorization: `bearer ${token}`,
       },
     })
-      .then((response) => response.json())
+      .then((response) => {
+        if (response.status === 401) {
+          throw new Error(response.status);
+        }
+        return response.json();
+      })
       .then(({ data }) => {
         const postsData = data.children;
         setPosts(postsData);

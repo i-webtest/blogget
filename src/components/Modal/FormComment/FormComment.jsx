@@ -1,18 +1,24 @@
-import React, { useContext, useRef } from 'react';
+import React, { useContext } from 'react';
 import style from './FormComment.module.css';
 import { authContext } from '../../../context/authContext';
 import { Text } from '../../UI/Text/Text';
+import { useDispatch, useSelector } from 'react-redux';
+import { updateComment } from '../../../store';
 
 export const FormComment = () => {
+  const value = useSelector((state) => state.comment);
+  const dispatch = useDispatch();
+
   const { auth } = useContext(authContext);
-  const textareaRef = useRef(null);
-  console.log('textareaRef: ', textareaRef);
 
   const commentSubmit = (e) => {
     e.preventDefault();
 
-    console.log(textareaRef.current.value);
-    textareaRef.current.value = '';
+    console.log(value);
+  };
+
+  const handleChange = (e) => {
+    dispatch(updateComment(e.target.value));
   };
 
   return (
@@ -21,7 +27,7 @@ export const FormComment = () => {
         {auth.name}
       </Text>
 
-      <textarea className={style.textarea} ref={textareaRef}></textarea>
+      <textarea className={style.textarea} value={value} onChange={handleChange}></textarea>
 
       <button className={style.btn}>Отправить</button>
     </form>
