@@ -6,7 +6,7 @@ import { Text } from '../../UI/Text/Text';
 import { urlAuth } from '../../../api/auth';
 import { authContext } from '../../../context/authContext';
 import { useDispatch } from 'react-redux';
-import { deleteToken } from '../../../store';
+import { deleteToken } from '../../../store/tokenReducer';
 
 // eslint-disable-next-line arrow-body-style
 export const Auth = () => {

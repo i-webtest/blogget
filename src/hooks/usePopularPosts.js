@@ -4,12 +4,12 @@ import { useSelector } from 'react-redux';
 
 export const usePopularPosts = () => {
   const [posts, setPosts] = useState([]);
-  const token = useSelector((state) => state.token);
+  const token = useSelector((state) => state.tokenReducer.token);
 
   useEffect(() => {
     if (!token) return;
 
-    fetch(`${URL_API}/best`, {
+    fetch(`${URL_API}/best?limit=20`, {
       headers: {
         Authorization: `bearer ${token}`,
       },

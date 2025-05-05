@@ -8,8 +8,6 @@ import { Thumbnail } from './Thumbnail/Thumbnail';
 import { DeleteBtn } from './DeleteBtn/DeleteBtn';
 
 export const Post = ({ postData }) => {
-  console.log('postData: ', postData);
-
   const { id, thumbnail, title, author, ups, selftext: markdown, created } = postData;
 
   return (
