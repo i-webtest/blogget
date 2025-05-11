@@ -3,19 +3,24 @@ import { Main } from './components/Main/Main';
 import { useDispatch } from 'react-redux';
 import { updateToken } from './store/tokenReducer';
 import { getToken } from './api/token';
-// import { PostsContextProvider } from './context/postsContext';
+import { Route, Routes } from 'react-router';
 
 const App = () => {
   const dispatch = useDispatch();
   dispatch(updateToken(getToken()));
 
   return (
-    <>
-      {/* <PostsContextProvider> */}
-      <Header />
-      <Main />
-      {/* </PostsContextProvider> */}
-    </>
+    <Routes>
+      <Route
+        path='*'
+        element={
+          <>
+            <Header />
+            <Main />
+          </>
+        }
+      />
+    </Routes>
   );
 };
 
