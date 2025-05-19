@@ -1,24 +1,29 @@
 import style from './List.module.css';
 import { Post } from './Post/Post';
-import { Text } from '../../UI/Text/Text';
-import { usePopularPosts } from '../../../hooks/usePopularPosts';
 import { Preloader } from '../../UI/Preloader/Preloader';
 import { useEffect, useRef } from 'react';
 import { useDispatch } from 'react-redux';
 import { postsRequestAsync } from '../../../store/posts/postsAction';
 import { useSelector } from 'react-redux';
 import { Outlet, useParams } from 'react-router';
+import { postsSlice } from '../../../store/posts/postsSlice';
+import { Text } from '../../UI/Text/Text';
 
 export const List = () => {
-  const [posts, loading] = usePopularPosts();
-  // const posts = useSelector((state) => state.posts.posts);
-  const endList = useRef(null);
+  const token = useSelector((state) => state.tokenReducer.token);
+  const loading = useSelector((state) => state.posts.loading);
+  const posts = useSelector((state) => state.posts.posts);
   const isLast = useSelector((state) => state.posts.isLast);
+  const endList = useRef(null);
   const dispatch = useDispatch();
   const { page } = useParams();
 
   useEffect(() => {
-    dispatch(postsRequestAsync(page));
+    dispatch(postsSlice.actions.changePage(page));
+
+    if (token) {
+      dispatch(postsRequestAsync(page));
+    }
   }, [page]);
 
   useEffect(() => {
@@ -26,7 +31,7 @@ export const List = () => {
 
     const observer = new IntersectionObserver(
       (entries) => {
-        if (entries[0].isIntersecting) {
+        if (entries[0].isIntersecting && token) {
           dispatch(postsRequestAsync());
         }
       },
