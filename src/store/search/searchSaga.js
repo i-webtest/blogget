@@ -19,12 +19,6 @@ function* fetchSearch(search) {
   }
 }
 
-// function* workerSearch(action) {
-//   const token = yield select((state) => state.tokenReducer.token);
-//   const { data } = yield call(fetchSearch, action.search, token);
-//   yield put(searchRequestSuccess(data));
-// }
-
 export function* watchSearch() {
   yield takeLatest(SEARCH_REQUEST, fetchSearch);
 }
